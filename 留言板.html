@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 2000px;
+        }
+        div {
+            width: 100%;
+            margin: auto;
+        }
+        textarea {
+            outline: medium;
+            resize: none;
+        }
+        ul li {
+            /* background-color: pink; */
+            margin-bottom: 10px;
+            list-style: none;
+        }
+        button {
+            background-color: skyblue;
+            outline: medium;
+        }
+        a {
+            float: right;
+            text-decoration: none;
+            color: #333;
+        }
+        .bg {
+            width: 100%;
+        }
+        .yu {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/最新.png" alt="" class="bg">
+    <!-- <img src="images/最新.png" alt=""> -->
+    <div>
+        <ul></ul>
+        <label for="selec"><h3>写下你的评论</h3></label> <button>发布</button>
+        <textarea name="ii" id="selec" cols="60" rows="2"></textarea>
+        <!-- <button>发布</button> -->
+        <!-- <ul></ul> -->
+    </div>
+    
+    <script>
+        var btn=document.querySelector("button");
+        var text=document.querySelector("textarea");
+        var ul=document.querySelector("ul");
+        btn.onclick=function() {
+            if (text.value==="") {
+                alert("请输入内容，不能为空！");
+                return false;
+            } else {
+                var li=document.createElement("li");
+                li.innerHTML="<img src='images/头像3.jpg' alt='' class='yu'>"+text.value+"<a href='javascript:;'>删除</a>";//javascript:;这个阻止链接跳转
+                ul.insertBefore(li,ul.children[0]);//记住了insertBefor 里面是两个参数，第二个表示插在谁前面
+                text.value=null;//记住表单类的，他们的值只能用value来改变，innnerHTML无效
+                var a=document.querySelectorAll("a");
+                for (var i=0;i<a.length;i++) {
+                a[i].onclick=function() {
+                ul.removeChild(this.parentNode);
+            }
+        }
+                
+            } 
+        }
+        // 主要要删除节点了，可是结构里现在就没有，也就是要删除未来添加进去的，你也只能在添加的函数里面去写删除，否则querySelecetorAll()找不到元素
+       /*  var a=document.querySelectorAll("a");
+                for (var i=0;i<a.length;i++) {
+                a[i].onclick=function() {
+                ul.removeChild(this.parentNode);}} */
+    </script>
+</body>
+</html>
